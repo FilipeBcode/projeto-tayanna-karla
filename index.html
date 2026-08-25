@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tayanna Karla — Estética Avançada</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #faf7f2;
+    --gold: #c9a96e;
+    --gold-light: #e8d5b0;
+    --dark: #1a1714;
+    --warm-gray: #8a8078;
+    --blush: #e8d5cc;
+    --deep: #2c2420;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    padding: 24px 60px 24px 28px;
+    display: flex; justify-content: space-between; align-items: center;
+    transition: background .4s, padding .4s;
+  }
+  nav.scrolled {
+    background: rgba(250,247,242,.95);
+    backdrop-filter: blur(12px);
+    padding: 16px 60px 16px 28px;
+    border-bottom: 1px solid rgba(201,169,110,.2);
+  }
+  .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem; font-weight: 300; letter-spacing: .25em;
+    color: var(--cream); text-decoration: none;
+    transition: color .4s;
+  }
+  nav.scrolled .logo { color: var(--dark); }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    font-size: .78rem; letter-spacing: .14em; text-transform: uppercase;
+    color: rgba(250,247,242,.85); text-decoration: none;
+    transition: color .3s;
+  }
+  nav.scrolled .nav-links a { color: var(--warm-gray); }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    font-size: .75rem; letter-spacing: .12em; text-transform: uppercase;
+    padding: 10px 24px; border: 1px solid rgba(250,247,242,.5);
+    color: var(--cream); background: transparent; cursor: pointer;
+    transition: all .3s; text-decoration: none;
+  }
+  nav.scrolled .nav-cta { border-color: var(--gold); color: var(--gold); }
+  .nav-cta:hover { background: var(--gold); border-color: var(--gold); color: var(--dark) !important; }
+
+  /* ── HERO ── */
+  #hero {
+    height: 100vh; position: relative;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: linear-gradient(
+      160deg,
+      rgba(26,23,20,.88) 0%,
+      rgba(44,36,32,.72) 36%,
+      rgba(90,61,48,.42) 66%,
+      rgba(26,23,20,.68) 100%
+    );
+    z-index: 1;
+  }
+  .hero-image-overlay {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 70% 50%, rgba(201,169,110,.15) 0%, transparent 60%),
+      linear-gradient(to bottom, rgba(28,23,20,.3) 0%, transparent 40%, rgba(28,23,20,.5) 100%);
+    z-index: 2;
+  }
+  /* decorative skin texture */
+  .hero-texture {
+    position: absolute; inset: 0; z-index: 0;
+    background:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E"),
+      url("assets/tayanna-hero.JPEG") center 32% / cover no-repeat;
+    background-size: 300px 300px, cover;
+  }
+  .hero-content {
+    position: relative; z-index: 3;
+    text-align: center; max-width: 780px; padding: 0 24px;
+    animation: heroReveal 1.2s cubic-bezier(.16,1,.3,1) both;
+  }
+  @keyframes heroReveal {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-label {
+    font-size: .72rem; letter-spacing: .3em; text-transform: uppercase;
+    color: var(--gold-light); margin-bottom: 28px;
+    animation: heroReveal 1.2s .2s cubic-bezier(.16,1,.3,1) both;
+  }
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.2rem, 8vw, 6.5rem);
+    font-weight: 300; line-height: 1.05;
+    color: var(--cream); margin-bottom: 28px;
+    animation: heroReveal 1.2s .35s cubic-bezier(.16,1,.3,1) both;
+  }
+  .hero-title em { font-style: italic; color: var(--gold-light); }
+  .hero-sub {
+    font-size: 1rem; font-weight: 300; line-height: 1.7;
+    color: rgba(250,247,242,.75); max-width: 480px; margin: 0 auto 44px;
+    animation: heroReveal 1.2s .5s cubic-bezier(.16,1,.3,1) both;
+  }
+  .hero-buttons {
+    display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+    animation: heroReveal 1.2s .65s cubic-bezier(.16,1,.3,1) both;
+  }
+  .btn-primary {
+    padding: 16px 40px; background: var(--gold); color: var(--dark);
+    border: none; font-family: 'DM Sans', sans-serif;
+    font-size: .8rem; letter-spacing: .15em; text-transform: uppercase;
+    cursor: pointer; transition: all .3s; text-decoration: none; display: inline-block;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(201,169,110,.4); }
+  .btn-ghost {
+    padding: 16px 40px; background: transparent;
+    border: 1px solid rgba(250,247,242,.4); color: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    font-size: .8rem; letter-spacing: .15em; text-transform: uppercase;
+    cursor: pointer; transition: all .3s; text-decoration: none; display: inline-block;
+  }
+  .btn-ghost:hover { border-color: var(--cream); background: rgba(250,247,242,.08); }
+  .hero-scroll {
+    position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+    z-index: 3; display: flex; flex-direction: column; align-items: center; gap: 8px;
+    animation: heroReveal 1.2s .9s cubic-bezier(.16,1,.3,1) both;
+  }
+  .hero-scroll span { font-size: .65rem; letter-spacing: .25em; text-transform: uppercase; color: rgba(250,247,242,.5); }
+  .scroll-line {
+    width: 1px; height: 48px; background: linear-gradient(to bottom, rgba(250,247,242,.5), transparent);
+    animation: scrollPulse 2s infinite;
+  }
+  @keyframes scrollPulse { 0%,100%{opacity:.5;transform:scaleY(1)} 50%{opacity:1;transform:scaleY(1.2)} }
+
+  /* ── NUMBERS ── */
+  .numbers-bar {
+    background: var(--dark); padding: 40px 60px;
+    display: grid; grid-template-columns: repeat(4,1fr);
+    border-top: 1px solid rgba(201,169,110,.2);
+  }
+  .number-item { text-align: center; }
+  .number-item + .number-item { border-left: 1px solid rgba(201,169,110,.15); }
+  .number-val {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem; font-weight: 300; color: var(--gold);
+    display: block;
+  }
+  .number-label { font-size: .72rem; letter-spacing: .18em; text-transform: uppercase; color: var(--warm-gray); margin-top: 4px; }
+
+  /* ── SECTION BASE ── */
+  section { padding: 100px 60px; }
+  .section-label {
+    font-size: .7rem; letter-spacing: .35em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 16px; display: block;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 4vw, 3.4rem); font-weight: 300; line-height: 1.2;
+  }
+  .divider {
+    width: 48px; height: 1px; background: var(--gold);
+    margin: 24px 0;
+  }
+
+  /* ── SOBRE ── */
+  #sobre {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+    background: var(--cream);
+  }
+  .sobre-visual {
+    position: relative; height: 560px;
+  }
+  .sobre-card {
+    position: absolute; border-radius: 2px; overflow: hidden;
+  }
+  .sobre-card-main {
+    width: 75%; height: 480px; top: 0; right: 0;
+    background:
+      linear-gradient(to top, rgba(26,23,20,.55), rgba(26,23,20,.04) 55%),
+      url("assets/tayanna-karla-1.JPG") center 38% / cover no-repeat;
+    display: flex; align-items: flex-end; padding: 28px;
+  }
+  .sobre-card-accent {
+    width: 55%; height: 200px; bottom: 0; left: 0;
+    background: var(--dark);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 8px;
+  }
+  .sobre-accent-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem; font-style: italic; color: var(--gold); text-align: center; line-height: 1.4;
+  }
+  .sobre-line { width: 32px; height: 1px; background: var(--gold); }
+  .sobre-badge {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: rgba(250,247,242,.15); backdrop-filter: blur(8px);
+    padding: 12px 18px; border: 1px solid rgba(250,247,242,.2);
+  }
+  .sobre-badge-text { font-size: .72rem; letter-spacing: .1em; color: var(--cream); }
+  .sobre-text p { font-size: .95rem; line-height: 1.8; color: var(--warm-gray); margin-bottom: 16px; }
+  .sobre-features { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 32px; }
+  .feature-item {
+    display: flex; align-items: flex-start; gap: 12px; padding: 16px;
+    border: 1px solid rgba(201,169,110,.2); transition: border-color .3s;
+  }
+  .feature-item:hover { border-color: var(--gold); }
+  .feature-icon { font-size: 1.2rem; flex-shrink: 0; }
+  .feature-name { font-size: .8rem; letter-spacing: .05em; font-weight: 500; margin-bottom: 4px; }
+  .feature-desc { font-size: .75rem; color: var(--warm-gray); line-height: 1.5; }
+
+  /* ── PROCEDIMENTOS ── */
+  #procedimentos { background: var(--dark); color: var(--cream); }
+  #procedimentos .section-title { color: var(--cream); }
+  .proc-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 56px; flex-wrap: wrap; gap: 24px; }
+  .proc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(201,169,110,.1); }
+  .proc-card {
+    background: var(--dark); padding: 40px 32px;
+    transition: background .3s; cursor: pointer; position: relative; overflow: hidden;
+  }
+  .proc-card::before {
+    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px;
+    background: var(--gold); transform: scaleX(0); transform-origin: left;
+    transition: transform .4s cubic-bezier(.16,1,.3,1);
+  }
+  .proc-card:hover::before { transform: scaleX(1); }
+  .proc-card:hover { background: rgba(201,169,110,.06); }
+  .proc-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.5rem; font-weight: 300; color: rgba(201,169,110,.2);
+    line-height: 1; margin-bottom: 16px;
+    transition: color .3s;
+  }
+  .proc-card:hover .proc-number { color: rgba(201,169,110,.5); }
+  .proc-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem; font-weight: 400; color: var(--cream); margin-bottom: 12px;
+  }
+  .proc-desc { font-size: .82rem; line-height: 1.7; color: rgba(250,247,242,.55); }
+  .proc-tag {
+    display: inline-block; margin-top: 20px;
+    font-size: .65rem; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--gold); border: 1px solid rgba(201,169,110,.3);
+    padding: 5px 12px;
+  }
+
+  /* ── GALERIA ── */
+  #galeria { background: #f5f0e8; }
+  .galeria-intro { max-width: 480px; margin-bottom: 56px; }
+  .tabs {
+    display: flex; gap: 0; margin-bottom: 40px;
+    border-bottom: 1px solid rgba(201,169,110,.2);
+  }
+  .tab {
+    padding: 12px 28px; font-size: .75rem; letter-spacing: .15em; text-transform: uppercase;
+    background: none; border: none; cursor: pointer; color: var(--warm-gray);
+    border-bottom: 2px solid transparent; margin-bottom: -1px;
+    transition: all .3s;
+  }
+  .tab.active { color: var(--dark); border-bottom-color: var(--gold); }
+  .tab:hover { color: var(--dark); }
+  .gallery-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  }
+  .gallery-item {
+    position: relative; overflow: hidden; cursor: pointer;
+    aspect-ratio: 3/4;
+    border-radius: 2px;
+  }
+  .gallery-item:first-child { grid-row: span 2; aspect-ratio: auto; }
+  .gallery-bg {
+    width: 100%; height: 100%;
+    transition: transform .6s cubic-bezier(.16,1,.3,1);
+    border-radius: 2px;
+  }
+  .gallery-item:hover .gallery-bg { transform: scale(1.05); }
+  .gallery-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(26,23,20,.8) 0%, transparent 50%);
+    opacity: 0; transition: opacity .4s;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 24px; border-radius: 2px;
+  }
+  .gallery-item:hover .gallery-overlay { opacity: 1; }
+  .gallery-tag {
+    display: inline-block; padding: 4px 10px;
+    background: var(--gold); color: var(--dark);
+    font-size: .65rem; letter-spacing: .15em; text-transform: uppercase;
+    margin-bottom: 8px; width: fit-content;
+  }
+  .gallery-label { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--cream); }
+
+  /* before/after slider */
+  .ba-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .ba-item { position: relative; overflow: hidden; border-radius: 2px; aspect-ratio: 4/5; background: var(--dark); }
+  .ba-photo {
+    width: 100%; height: 100%; display: block;
+    object-fit: contain; background: #111;
+  }
+  .ba-split {
+    width: 100%; height: 100%;
+    display: grid; grid-template-columns: 1fr 1fr;
+  }
+  .ba-before, .ba-after {
+    display: flex; align-items: flex-end; padding: 16px;
+    font-size: .7rem; letter-spacing: .15em; text-transform: uppercase;
+  }
+  .ba-before {
+    background: linear-gradient(135deg, #c5b5a8 0%, #b8a090 100%);
+    color: rgba(255,255,255,.8);
+  }
+  .ba-after {
+    background: linear-gradient(135deg, #e8d8cc 0%, #d4c0b0 50%, #c9a96e 100%);
+    color: rgba(255,255,255,.9);
+  }
+  .ba-label-pill {
+    background: rgba(0,0,0,.35); backdrop-filter: blur(4px);
+    padding: 4px 10px; border-radius: 20px; font-size: .62rem; letter-spacing: .12em;
+  }
+  .ba-divider {
+    position: absolute; top: 0; left: 50%; width: 2px; height: 100%;
+    background: var(--cream); transform: translateX(-50%);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .ba-circle {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--cream); display: flex; align-items: center; justify-content: center;
+    font-size: .7rem; color: var(--dark); box-shadow: 0 4px 12px rgba(0,0,0,.2);
+    flex-shrink: 0;
+  }
+  .ba-info {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: rgba(26,23,20,.92); padding: 14px 18px;
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 16px;
+  }
+  .ba-proc { font-size: .78rem; color: var(--cream); }
+  .ba-result { font-size: .7rem; color: var(--gold); }
+
+  /* ── DEPOIMENTOS ── */
+  #depoimentos {
+    background: linear-gradient(135deg, var(--dark) 0%, #2c1f1a 100%);
+    color: var(--cream);
+  }
+  #depoimentos .section-title { color: var(--cream); }
+  .dep-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 56px; }
+  .dep-card {
+    padding: 36px 28px;
+    border: 1px solid rgba(201,169,110,.15);
+    position: relative; transition: border-color .3s;
+  }
+  .dep-card:hover { border-color: rgba(201,169,110,.4); }
+  .dep-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.5rem; font-weight: 300;
+    color: var(--gold); line-height: .8; margin-bottom: 16px; display: block;
+  }
+  .dep-text { font-size: .88rem; line-height: 1.75; color: rgba(250,247,242,.7); margin-bottom: 24px; }
+  .dep-stars { color: var(--gold); font-size: .9rem; margin-bottom: 16px; }
+  .dep-author { display: flex; align-items: center; gap: 12px; }
+  .dep-avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--dark);
+  }
+  .dep-name { font-size: .82rem; font-weight: 500; color: var(--cream); }
+  .dep-proc { font-size: .72rem; color: var(--warm-gray); margin-top: 2px; }
+
+  /* ── FAQ ── */
+  #faq { background: var(--cream); }
+  .faq-layout { display: grid; grid-template-columns: 1fr 1.6fr; gap: 80px; align-items: start; }
+  .faq-list { margin-top: 16px; }
+  .faq-item { border-bottom: 1px solid rgba(201,169,110,.2); }
+  .faq-q {
+    width: 100%; padding: 22px 0; display: flex; justify-content: space-between; align-items: center;
+    background: none; border: none; cursor: pointer;
+    font-family: 'DM Sans', sans-serif; font-size: .9rem; font-weight: 500;
+    color: var(--dark); text-align: left; transition: color .3s;
+  }
+  .faq-q:hover { color: var(--gold); }
+  .faq-icon {
+    width: 24px; height: 24px; border: 1px solid rgba(201,169,110,.4);
+    display: flex; align-items: center; justify-content: center;
+    font-size: .9rem; color: var(--gold); flex-shrink: 0;
+    transition: transform .3s, background .3s;
+  }
+  .faq-item.open .faq-icon { transform: rotate(45deg); background: var(--gold); color: var(--dark); }
+  .faq-a {
+    max-height: 0; overflow: hidden; transition: max-height .4s ease, padding .3s;
+    font-size: .84rem; line-height: 1.75; color: var(--warm-gray); padding: 0;
+  }
+  .faq-item.open .faq-a { max-height: 200px; padding-bottom: 20px; }
+
+  /* ── CTA ── */
+  #agendar {
+    background: linear-gradient(135deg, #2c1f1a 0%, var(--dark) 50%, #1a1208 100%);
+    text-align: center; color: var(--cream); position: relative; overflow: hidden;
+  }
+  #agendar::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at center, rgba(201,169,110,.12) 0%, transparent 70%);
+  }
+  .cta-ornament {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 12rem; font-weight: 300; color: rgba(201,169,110,.05);
+    position: absolute; top: -20px; left: 50%; transform: translateX(-50%);
+    white-space: nowrap; pointer-events: none; user-select: none;
+    line-height: 1;
+  }
+  .cta-content { position: relative; z-index: 1; max-width: 600px; margin: 0 auto; }
+  .cta-content .section-label { justify-content: center; display: flex; }
+  .cta-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.4rem, 5vw, 4rem); font-weight: 300; color: var(--cream);
+    margin-bottom: 20px; line-height: 1.15;
+  }
+  .cta-title em { font-style: italic; color: var(--gold-light); }
+  .cta-sub { font-size: .9rem; color: rgba(250,247,242,.65); margin-bottom: 44px; line-height: 1.7; }
+  .cta-form { display: flex; flex-direction: column; gap: 12px; max-width: 400px; margin: 0 auto 32px; }
+  .cta-input {
+    padding: 16px 20px;
+    background: rgba(250,247,242,.07); border: 1px solid rgba(201,169,110,.25);
+    color: var(--cream); font-family: 'DM Sans', sans-serif; font-size: .88rem;
+    outline: none; transition: border-color .3s;
+  }
+  .cta-input::placeholder { color: rgba(250,247,242,.35); }
+  .cta-input:focus { border-color: var(--gold); }
+  .cta-note { font-size: .72rem; color: rgba(250,247,242,.3); letter-spacing: .05em; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #0e0c0a; padding: 56px 60px 32px;
+    color: rgba(250,247,242,.5);
+  }
+  .footer-top {
+    display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 48px;
+    padding-bottom: 48px; border-bottom: 1px solid rgba(201,169,110,.12);
+  }
+  .footer-brand .logo-footer {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 300;
+    letter-spacing: .25em; color: var(--gold); display: block; margin-bottom: 16px;
+    text-decoration: none;
+  }
+  .footer-brand p { font-size: .82rem; line-height: 1.7; max-width: 260px; }
+  .footer-col h4 {
+    font-size: .7rem; letter-spacing: .2em; text-transform: uppercase;
+    color: var(--cream); margin-bottom: 20px;
+  }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col ul a { font-size: .82rem; color: rgba(250,247,242,.5); text-decoration: none; transition: color .3s; }
+  .footer-col ul a:hover { color: var(--gold); }
+  .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 28px; flex-wrap: wrap; gap: 16px; }
+  .footer-bottom p { font-size: .75rem; }
+  .social-links { display: flex; gap: 16px; }
+  .social-link {
+    width: 36px; height: 36px; border: 1px solid rgba(201,169,110,.2);
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(250,247,242,.5); text-decoration: none; font-size: .75rem;
+    transition: all .3s;
+  }
+  .social-link:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* ── TABS DISPLAY ── */
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  /* ── ANIMATIONS ON SCROLL ── */
+  .reveal {
+    opacity: 0; transform: translateY(32px);
+    transition: opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: .1s; }
+  .reveal-delay-2 { transition-delay: .2s; }
+  .reveal-delay-3 { transition-delay: .3s; }
+  .reveal-delay-4 { transition-delay: .4s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    nav { padding: 20px 32px; }
+    nav.scrolled { padding: 14px 32px; }
+    section { padding: 80px 32px; }
+    .numbers-bar { padding: 32px; }
+    #sobre { grid-template-columns: 1fr; gap: 48px; }
+    .sobre-visual { height: 380px; }
+    .proc-grid { grid-template-columns: 1fr 1fr; }
+    .ba-grid { grid-template-columns: 1fr 1fr; }
+    .faq-layout { grid-template-columns: 1fr; gap: 40px; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 768px) {
+    nav { padding: 16px 20px; }
+    nav.scrolled { padding: 12px 20px; }
+    .nav-links, .nav-cta { display: none; }
+    section { padding: 64px 20px; }
+    .numbers-bar { grid-template-columns: 2fr 2fr; padding: 24px 20px; gap: 24px 0; }
+    .number-item:nth-child(3) { border-left: none; }
+    .proc-grid { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; }
+    .gallery-item:first-child { grid-row: span 1; aspect-ratio: 3/4; }
+    .ba-grid { grid-template-columns: 1fr; }
+    .dep-grid { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr; }
+    .sobre-features { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="logo">Tayanna Karla</a>
+  <ul class="nav-links">
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#procedimentos">Procedimentos</a></li>
+    <li><a href="#galeria">Resultados</a></li>
+    <li><a href="#depoimentos">Depoimentos</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <a href="https://wa.me/5583999022860?text=Ol%C3%A1%2C%20Tayanna%21%20Gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o." class="nav-cta" target="_blank" rel="noopener">Agendar Consulta</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-texture"></div>
+  <div class="hero-bg"></div>
+  <div class="hero-image-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-label">Estética Avançada · Paraíba</p>
+    <h1 class="hero-title">Realce sua<br><em>beleza natural</em><br>com precisão</h1>
+    <p class="hero-sub">Procedimentos de harmonização facial com ácido hialurônico e bioestimuladores por uma especialista certificada.</p>
+    <div class="hero-buttons">
+      <a href="https://wa.me/5583999022860?text=Ol%C3%A1%2C%20Tayanna%21%20Gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o." class="btn-primary" target="_blank" rel="noopener">Agendar avaliação</a>
+      <a href="#galeria" class="btn-ghost">Ver resultados</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Explorar</span>
+  </div>
+</section>
+
+<!-- NUMBERS BAR -->
+<div class="numbers-bar reveal">
+  <div class="number-item">
+    <span class="number-val">+2k</span>
+    <span class="number-label">Procedimentos realizados</span>
+  </div>
+  <div class="number-item">
+    <span class="number-val">12</span>
+    <span class="number-label">Anos de experiência</span>
+  </div>
+  <div class="number-item">
+    <span class="number-val">98%</span>
+    <span class="number-label">Índice de satisfação</span>
+  </div>
+  <div class="number-item">
+    <span class="number-val">4</span>
+    <span class="number-label">Especialistas certificados</span>
+  </div>
+</div>
+
+<!-- SOBRE -->
+<section id="sobre">
+  <div class="sobre-visual reveal">
+    <div class="sobre-card sobre-card-main">
+      <div class="sobre-badge">
+        <span>✦</span>
+        <span class="sobre-badge-text">Tayanna Karla Estética Avançada</span>
+      </div>
+    </div>
+    <div class="sobre-card sobre-card-accent">
+      <div class="sobre-line"></div>
+      <p class="sobre-accent-text">"Beleza que<br>nasce de dentro"</p>
+      <div class="sobre-line"></div>
+    </div>
+  </div>
+  <div class="sobre-text reveal reveal-delay-2">
+    <span class="section-label">Sobre Tayanna Karla</span>
+    <h2 class="section-title">Onde ciência encontra a arte da beleza</h2>
+    <div class="divider"></div>
+    <p>Fundada em 2025, Tayanna Karla Estética Avançada nasceu da crença de que toda pessoa merece se sentir bem em sua própria pele — sem perder a autenticidade. Unimos cuidado, técnica e uma abordagem individualizada e ética.</p>
+    <p>Com atendimento cuidadoso e personalizado, Tayanna valoriza a beleza natural de cada cliente com procedimentos seguros, modernos e pensados para realçar a autoestima.</p>
+    <div class="sobre-features">
+      <div class="feature-item">
+        <span class="feature-icon">🔬</span>
+        <div>
+          <p class="feature-name">Avaliação personalizada</p>
+          <p class="feature-desc">Cada rosto é único. Nosso protocolo começa com análise facial completa.</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <span class="feature-icon">✦</span>
+        <div>
+          <p class="feature-name">Produtos premium</p>
+          <p class="feature-desc">Utilizamos apenas marcas certificadas como Juvederm, Restylane e Sculptra.</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <span class="feature-icon">🏥</span>
+        <div>
+          <p class="feature-name">Ambiente clínico</p>
+          <p class="feature-desc">Estrutura hospitalar com máximo controle de biossegurança.</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <span class="feature-icon">💛</span>
+        <div>
+          <p class="feature-name">Pós-procedimento</p>
+          <p class="feature-desc">Acompanhamento completo e retorno gratuito inclusos.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCEDIMENTOS -->
+<section id="procedimentos">
+  <div class="proc-header">
+    <div>
+      <span class="section-label">O que oferecemos</span>
+      <h2 class="section-title reveal">Nossos procedimentos</h2>
+    </div>
+    <a href="#agendar" class="btn-primary">Ver todos os tratamentos</a>
+  </div>
+  <div class="proc-grid">
+    <div class="proc-card reveal">
+      <div class="proc-number">01</div>
+      <h3 class="proc-name">Ácido Hialurônico</h3>
+      <p class="proc-desc">Preenchimento facial e corporal com ácido hialurônico para lábios, olheiras, malar, mandíbula, mento e glúteos. Ideal para restaurar volume, definir contornos e proporcionar resultados naturais, com destaque para a harmonização e projeção dos glúteos.</p>
+      <span class="proc-tag">Face e corpo</span>
+    </div>
+    <div class="proc-card reveal reveal-delay-1">
+      <div class="proc-number">02</div>
+      <h3 class="proc-name">Bioestimulador de Colágeno</h3>
+      <p class="proc-desc">Tecnologia avançada para estimular o colágeno natural, restaurar a firmeza, melhorar a qualidade da pele e promover um rejuvenescimento elegante e duradouro. Indicado para face e corpo.</p>
+      <span class="proc-tag">Rejuvenescimento</span>
+    </div>
+    <div class="proc-card reveal reveal-delay-2">
+      <div class="proc-number">03</div>
+      <h3 class="proc-name">Toxina Botulínica</h3>
+      <p class="proc-desc">Tratamento que suaviza linhas de expressão e previne o surgimento de novas rugas, preservando a naturalidade e proporcionando uma aparência mais leve, descansada e rejuvenescida.</p>
+      <span class="proc-tag">Naturalidade</span>
+    </div>
+    <div class="proc-card reveal">
+      <div class="proc-number">04</div>
+      <h3 class="proc-name">Skinbooster</h3>
+      <p class="proc-desc">Tratamento com ácido hialurônico que promove hidratação profunda, melhora a qualidade da pele e devolve viço, luminosidade e maciez de forma natural.</p>
+      <span class="proc-tag">Hidratação profunda</span>
+    </div>
+    <div class="proc-card reveal reveal-delay-1">
+      <div class="proc-number">05</div>
+      <h3 class="proc-name">Peeling Químico</h3>
+      <p class="proc-desc">Tratamentos personalizados para melasma, manchas, acne, poros dilatados e rejuvenescimento, estimulando a renovação celular e melhorando a qualidade da pele.</p>
+      <span class="proc-tag">Renovação celular</span>
+    </div>
+    <div class="proc-card reveal reveal-delay-2">
+      <div class="proc-number">06</div>
+      <h3 class="proc-name">Harmonização Glútea</h3>
+      <p class="proc-desc">Procedimento corporal para melhorar contorno, projeção e firmeza dos glúteos, com planejamento individualizado para valorizar a harmonia corporal e entregar um resultado natural.</p>
+      <span class="proc-tag">Contorno corporal</span>
+    </div>
+  </div>
+</section>
+
+<!-- GALERIA -->
+<section id="galeria">
+  <div class="galeria-intro reveal">
+    <span class="section-label">Resultados reais</span>
+    <h2 class="section-title">Antes & Depois</h2>
+    <div class="divider"></div>
+    <p style="font-size:.88rem;color:var(--warm-gray);line-height:1.7;">Fotos reais de pacientes reais, com autorização. Nenhuma imagem foi manipulada digitalmente.</p>
+  </div>
+  <div class="tabs reveal">
+    <button class="tab active" onclick="switchTab(event,'todos')">Todos</button>
+    <button class="tab" onclick="switchTab(event,'glutea')">Harmonização Glútea</button>
+    <button class="tab" onclick="switchTab(event,'labios')">Lábios</button>
+    <button class="tab" onclick="switchTab(event,'toxina')">Toxina Botulínica</button>
+    <button class="tab" onclick="switchTab(event,'peeling')">Peeling</button>
+  </div>
+
+  <!-- Gallery view -->
+  <div id="tab-todos" class="tab-content active">
+    <div class="ba-grid">
+      <div class="ba-item reveal">
+        <img class="ba-photo" src="assets/resultado-harmonizacao-glutea.JPG" alt="Antes e depois de harmonização glútea">
+        <div class="ba-info">
+          <span class="ba-proc">Harmonização Glútea</span>
+          <span class="ba-result">Contorno corporal</span>
+        </div>
+      </div>
+      <div class="ba-item reveal reveal-delay-1">
+        <img class="ba-photo" src="assets/resultado-labios.JPG" alt="Antes e depois de preenchimento labial">
+        <div class="ba-info">
+          <span class="ba-proc">Preenchimento Labial</span>
+          <span class="ba-result">Ácido hialurônico</span>
+        </div>
+      </div>
+      <div class="ba-item reveal reveal-delay-2">
+        <img class="ba-photo" src="assets/resultado-toxina-botulinica.JPG" alt="Antes e depois de toxina botulínica na testa">
+        <div class="ba-info">
+          <span class="ba-proc">Toxina Botulínica</span>
+          <span class="ba-result">Linhas da testa</span>
+        </div>
+      </div>
+      <div class="ba-item reveal">
+        <img class="ba-photo" src="assets/resultado-peeling.JPG" alt="Antes e depois de peeling">
+        <div class="ba-info">
+          <span class="ba-proc">Peeling</span>
+          <span class="ba-result">Renovação da pele</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="tab-glutea" class="tab-content">
+    <div class="ba-grid">
+      <div class="ba-item">
+        <img class="ba-photo" src="assets/resultado-harmonizacao-glutea.JPG" alt="Antes e depois de harmonização glútea">
+        <div class="ba-info"><span class="ba-proc">Harmonização Glútea</span><span class="ba-result">Contorno corporal</span></div>
+      </div>
+    </div>
+  </div>
+  <div id="tab-labios" class="tab-content">
+    <div class="ba-grid">
+      <div class="ba-item">
+        <img class="ba-photo" src="assets/resultado-labios.JPG" alt="Antes e depois de preenchimento labial">
+        <div class="ba-info"><span class="ba-proc">Preenchimento Labial</span><span class="ba-result">Ácido hialurônico</span></div>
+      </div>
+    </div>
+  </div>
+  <div id="tab-toxina" class="tab-content">
+    <div class="ba-grid">
+      <div class="ba-item">
+        <img class="ba-photo" src="assets/resultado-toxina-botulinica.JPG" alt="Antes e depois de toxina botulínica na testa">
+        <div class="ba-info"><span class="ba-proc">Toxina Botulínica</span><span class="ba-result">Linhas da testa</span></div>
+      </div>
+    </div>
+  </div>
+  <div id="tab-peeling" class="tab-content">
+    <div class="ba-grid">
+      <div class="ba-item">
+        <img class="ba-photo" src="assets/resultado-peeling.JPG" alt="Antes e depois de peeling">
+        <div class="ba-info"><span class="ba-proc">Peeling</span><span class="ba-result">Renovação da pele</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section id="depoimentos">
+  <div style="text-align:center;max-width:520px;margin:0 auto 16px">
+    <span class="section-label" style="display:block;text-align:center">Pacientes que confiam em nós</span>
+    <h2 class="section-title reveal">O que dizem sobre nós</h2>
+  </div>
+  <div class="dep-grid">
+    <div class="dep-card reveal">
+      <span class="dep-quote">"</span>
+      <p class="dep-stars">★★★★★</p>
+      <p class="dep-text">Fiz preenchimento labial e fiquei apaixonada pelo resultado. Natural, elegante e sem aquele aspecto artificial que tanto me preocupava. A Dra. Marina foi incrível durante todo o processo.</p>
+      <div class="dep-author">
+        <div class="dep-avatar" style="background:var(--gold);">B</div>
+        <div>
+          <p class="dep-name">Bruna Marlus</p>
+          <p class="dep-proc">Ácido Hialurônico — Lábios</p>
+        </div>
+      </div>
+    </div>
+    <div class="dep-card reveal reveal-delay-1">
+      <span class="dep-quote">"</span>
+      <p class="dep-stars">★★★★★</p>
+      <p class="dep-text">Depois de anos com complexo das minhas olheiras, finalmente encontrei uma solução. O resultado do Sculptra foi gradual e super natural — minha pele está diferente depois de 3 sessões.</p>
+      <div class="dep-author">
+        <div class="dep-avatar" style="background:#c9a96e;">N</div>
+        <div>
+          <p class="dep-name">Natalia Priscila</p>
+          <p class="dep-proc">Bioestimulador — Sculptra</p>
+        </div>
+      </div>
+    </div>
+    <div class="dep-card reveal reveal-delay-2">
+      <span class="dep-quote">"</span>
+      <p class="dep-stars">★★★★★</p>
+      <p class="dep-text">Ambiente impecável, equipe extremamente profissional e atenciosa. O botox que fiz ficou muito natural, só rejuvenesceu sem "congelar" minha expressão. Voltarei com certeza.</p>
+      <div class="dep-author">
+        <div class="dep-avatar" style="background:#b8947a;">A</div>
+        <div>
+          <p class="dep-name">Andriele Holanda</p>
+          <p class="dep-proc">Toxina Botulínica</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="faq-layout">
+    <div class="reveal">
+      <span class="section-label">Dúvidas frequentes</span>
+      <h2 class="section-title">Perguntas que você pode ter</h2>
+      <div class="divider"></div>
+      <p style="font-size:.88rem;line-height:1.75;color:var(--warm-gray);margin-bottom:28px;">Não encontrou o que procura? Fale conosco pelo WhatsApp ou agende uma consulta de avaliação gratuita.</p>
+      <a href="https://wa.me/5583999022860?text=Ol%C3%A1%2C%20Tayanna%21%20Gostaria%20de%20tirar%20uma%20d%C3%BAvida%20sobre%20os%20procedimentos." class="btn-primary" style="display:inline-block" target="_blank" rel="noopener">Tirar dúvidas</a>
+    </div>
+    <div class="faq-list reveal reveal-delay-2">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          O ácido hialurônico é seguro? <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">Sim. O ácido hialurônico é uma substância naturalmente presente no organismo humano. Os produtos utilizados são certificados pela ANVISA e produzidos por laboratórios de referência mundial. Em mãos experientes, é um dos procedimentos mais seguros da medicina estética.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Quanto tempo dura o preenchimento? <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">Varia conforme o local tratado, o produto utilizado e o metabolismo de cada paciente. Em média, o ácido hialurônico dura de 12 a 18 meses nos lábios e de 18 a 24 meses em regiões menos móveis, como maçãs do rosto.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          A aplicação dói? <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">A maioria dos produtos já contém lidocaína (anestésico) em sua composição. Aplicamos também creme anestésico tópico antes do procedimento. A sensação é de leve pressão e formigamento, sem dor significativa.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Posso trabalhar no mesmo dia? <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">Na maioria dos casos, sim. Pode ocorrer inchaço ou pequenos hematomas nos primeiros dias, especialmente nos lábios. Recomendamos evitar exposição solar intensa, academia e bebidas alcoólicas nas primeiras 24 horas.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Como é feita a avaliação inicial? <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">A consulta de avaliação é gratuita e dura cerca de 40 minutos. Realizamos análise facial completa com fotos padronizadas, avaliamos suas queixas, discutimos expectativas e elaboramos um plano de tratamento personalizado e transparente.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Qual a diferença entre Botox e preenchimento? <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">A toxina botulínica (Botox) relaxa os músculos de expressão, suavizando rugas dinâmicas. O preenchimento com ácido hialurônico restaura volume e trata rugas estáticas. Muitas vezes, combinamos os dois para um resultado mais completo e harmonioso.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA / AGENDAR -->
+<section id="agendar">
+  <div class="cta-ornament">L</div>
+  <div class="cta-content reveal">
+    <span class="section-label">Comece hoje</span>
+    <h2 class="cta-title">Pronta para a sua <em>melhor versão?</em></h2>
+    <p class="cta-sub">Agende sua avaliação gratuita e descubra o protocolo ideal para realçar a sua beleza com segurança e naturalidade.</p>
+    <div class="cta-form">
+      <input class="cta-input" type="text" placeholder="Seu nome completo">
+      <input class="cta-input" type="tel" placeholder="WhatsApp (com DDD)">
+      <input class="cta-input" type="email" placeholder="Seu e-mail">
+      <select class="cta-input" style="appearance:none;cursor:pointer">
+        <option value="" disabled selected>Procedimento de interesse</option>
+        <option>Ácido Hialurônico</option>
+        <option>Toxina Botulínica</option>
+        <option>Bioestimulador de Colágeno</option>
+        <option>Skinbooster</option>
+        <option>Peeling Químico</option>
+        <option>Harmonização Glútea</option>
+        <option>Não sei ainda — quero avaliação</option>
+      </select>
+      <button class="btn-primary" id="whatsapp-submit" type="button" style="width:100%;padding:18px">Agendar avaliação gratuita</button>
+    </div>
+    <p class="cta-note">✦ Sem compromisso · Resposta em até 2 horas · 100% confidencial</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#" class="logo-footer">Tayanna Karla</a>
+      <p>Clínica de estética avançada comprometida com resultados naturais, seguros e personalizados.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Procedimentos</h4>
+      <ul>
+        <li><a href="#procedimentos">Ácido Hialurônico</a></li>
+        <li><a href="#procedimentos">Toxina Botulínica</a></li>
+        <li><a href="#procedimentos">Bioestimulador de Colágeno</a></li>
+        <li><a href="#procedimentos">Skinbooster</a></li>
+        <li><a href="#procedimentos">Peeling Químico</a></li>
+        <li><a href="#procedimentos">Harmonização Glútea</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Clínica</h4>
+      <ul>
+        <li><a href="#sobre">Sobre nós</a></li>
+        <li><a href="#galeria">Resultados</a></li>
+        <li><a href="#depoimentos">Depoimentos</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#agendar">Contato</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contato</h4>
+      <ul>
+        <li><a href="#">📍 Paraíba</a></li>
+        <li><a href="https://wa.me/5583999022860" target="_blank" rel="noopener">📞 (83) 9 9902-2860</a></li>
+        <li><a href="https://www.instagram.com/tayanna_karla.hof?igsh=NzEzMm5tMnd2czJh" target="_blank" rel="noopener">Instagram @tayanna_karla.hof</a></li>
+        <li><a href="#">⏰ Seg–Sex: 9h–19h</a></li>
+        <li><a href="#">⏰ Sáb: 9h–14h</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Tayanna Karla Estética. Todos os direitos reservados.</p>
+    <div class="social-links">
+      <a href="https://www.instagram.com/tayanna_karla.hof?igsh=NzEzMm5tMnd2czJh" class="social-link" title="Instagram" target="_blank" rel="noopener">in</a>
+      <a href="#" class="social-link" title="TikTok">tt</a>
+      <a href="https://wa.me/5583999022860" class="social-link" title="WhatsApp" target="_blank" rel="noopener">wp</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Navbar scroll
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  // FAQ toggle
+  function toggleFaq(btn) {
+    const item = btn.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  // Tabs
+  function switchTab(e, id) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    e.target.classList.add('active');
+    document.getElementById('tab-' + id).classList.add('active');
+  }
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+    });
+  });
+
+  // WhatsApp scheduling
+  const whatsappButton = document.getElementById('whatsapp-submit');
+  if (whatsappButton) {
+    whatsappButton.addEventListener('click', () => {
+      const fields = document.querySelectorAll('.cta-form .cta-input');
+      const name = fields[0].value.trim() || 'Nao informado';
+      const phone = fields[1].value.trim() || 'Nao informado';
+      const email = fields[2].value.trim() || 'Nao informado';
+      const procedure = fields[3].value || 'Nao sei ainda - quero avaliacao';
+      const message = `Ola, Tayanna! Gostaria de agendar uma avaliacao.%0A%0ANome: ${encodeURIComponent(name)}%0AWhatsApp: ${encodeURIComponent(phone)}%0AE-mail: ${encodeURIComponent(email)}%0AProcedimento: ${encodeURIComponent(procedure)}`;
+      window.open(`https://wa.me/5583999022860?text=${message}`, '_blank', 'noopener');
+    });
+  }
+</script>
+</body>
+</html>
